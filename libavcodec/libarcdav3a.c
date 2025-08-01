@@ -5,7 +5,6 @@
     #include <dlfcn.h> // Unix-like
 #endif
 #include <unistd.h>
-#include <dlfcn.h>
 #include <stdbool.h>
 #include "arcdav3a.h"
 #include "decode.h"
