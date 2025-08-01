@@ -1,4 +1,9 @@
-#include <dlfcn.h>
+#ifdef _WIN32
+    #include <windows.h>
+    #define dlclose(handle) FreeLibrary((HMODULE)(handle))
+#else
+    #include <dlfcn.h> // Unix-like
+#endif
 #include <unistd.h>
 #include <dlfcn.h>
 #include <stdbool.h>
