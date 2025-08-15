@@ -1,8 +1,10 @@
 #ifdef _WIN32
-    #include <windows.h>
-    #define dlclose(handle) FreeLibrary((HMODULE)(handle))
+#include <windows.h>
+#define dlopen(lib, flags) LoadLibraryA(lib)
+#define dlsym(lib, sym)    GetProcAddress((HMODULE)lib, sym)
+#define dlclose(lib)       FreeLibrary((HMODULE)lib)
 #else
-    #include <dlfcn.h> // Unix-like
+#include <dlfcn.h>
 #endif
 #include <unistd.h>
 #include <stdbool.h>
