@@ -1,6 +1,13 @@
 
 #include <unistd.h>
+#ifdef _WIN32
+#include <windows.h>
+#define dlopen(lib, flags) LoadLibraryA(lib)
+#define dlsym(lib, sym)    GetProcAddress((HMODULE)lib, sym)
+#define dlclose(lib)       FreeLibrary((HMODULE)lib)
+#else
 #include <dlfcn.h>
+#endif
 
 #include "arcdavs3.h"
 #include "decode.h"
